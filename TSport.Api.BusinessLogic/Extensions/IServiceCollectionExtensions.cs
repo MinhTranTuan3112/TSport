@@ -29,6 +29,7 @@ namespace TSport.Api.BusinessLogic.Extensions
         {
             services.AddScoped<IServiceFactory, ServiceFactory>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IClubService, ClubService>();
             return services;
         }
     }

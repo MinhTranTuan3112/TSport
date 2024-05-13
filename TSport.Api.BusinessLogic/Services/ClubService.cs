@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 using TSport.Api.BusinessLogic.Interfaces;
 using TSport.Api.DataAccess.Interfaces;
 using TSport.Api.Models.Entities;
-using TSport.Api.Shared.DTOs.Products;
+using TSport.Api.Shared.DTOs.Clubs;
 
 namespace TSport.Api.BusinessLogic.Services
 {
-    public class ProductService : IProductService
+    public class ClubService : IClubService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IServiceFactory _serviceFactory;
 
-        public ProductService(IUnitOfWork unitOfWork, IServiceFactory serviceFactory)
+
+        public ClubService(IUnitOfWork unitOfWork, IServiceFactory serviceFactory)
         {
             _unitOfWork = unitOfWork;
             _serviceFactory = serviceFactory;
         }
 
-        public async Task<List<GetProductDto>> GetProducts()
+        public async Task<List<GetClubDto>> GetClubs()
         {
-            return (await _unitOfWork.Repository<Product>().GetAllAsync()).Adapt<List<GetProductDto>>();
+            return (await _unitOfWork.Repository<Club>().GetAllAsync()).Adapt<List<GetClubDto>>();
         }
     }
 }

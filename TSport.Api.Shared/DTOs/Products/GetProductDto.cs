@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TSport.Api.Shared.DTOs.Products
 {
-    public class GetProductDto
+    public record GetProductDto
     {
         public int Id { get; set; }
 

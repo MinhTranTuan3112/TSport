@@ -4,9 +4,9 @@ using TSport.Api.Shared.DTOs.Products;
 
 namespace TSport.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    [ApiController]
+    public class ProductsController : ControllerBase
     {
         private readonly IServiceFactory _serviceFactory;
 

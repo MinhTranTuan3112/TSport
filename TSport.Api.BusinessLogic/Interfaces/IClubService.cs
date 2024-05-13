@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TSport.Api.Shared.DTOs.Clubs;
 
 namespace TSport.Api.BusinessLogic.Interfaces
 {
-    public interface IServiceFactory
+    public interface IClubService
     {
-        IProductService GetProductService();
-        IClubService GetClubService();
+        Task<List<GetClubDto>> GetClubs();
     }
 }

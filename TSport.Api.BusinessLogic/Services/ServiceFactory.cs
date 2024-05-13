@@ -11,13 +11,17 @@ namespace TSport.Api.BusinessLogic.Services
     public class ServiceFactory : IServiceFactory
     {
         private readonly Lazy<IProductService> _productService;
+        private readonly Lazy<IClubService> _clubService;
         private readonly IUnitOfWork _unitOfWork;
 
         public ServiceFactory(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork));
+            _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork, this));
+            _clubService = new Lazy<IClubService>(() => new ClubService(_unitOfWork, this));
         }
+
+        public IClubService GetClubService() => _clubService.Value;
 
         public IProductService GetProductService() => _productService.Value;
     }
