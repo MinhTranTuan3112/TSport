@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TSport.Api.DataAccess.Interfaces;
 using TSport.Api.DataAccess.Repositories;
+using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.DataAccess
 {
@@ -21,7 +22,7 @@ namespace TSport.Api.DataAccess
             _repositories = [];
         }
 
-        public IGenericRepository<T> Repository<T>() where T : class
+        public IGenericRepository<T> Repository<T>() where T : BaseEntity
         {
             if (_repositories.TryGetValue(typeof(T), out object? repository))
             {
