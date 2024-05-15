@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TSport.Api.DataAccess.Interfaces;
@@ -30,6 +31,17 @@ namespace TSport.Api.DataAccess.Repositories
         {
             _context.Remove(TEntity);
             return Task.CompletedTask;
+        }
+
+        public async Task<List<T>> FindAsync(Expression<Func<T, bool>> expression)
+        {
+            return await _context.Set<T>().Where(expression).ToListAsync();
+        }
+
+        public async Task<T?> FindOneAsync(Expression<Func<T, bool>> expression, bool hasTrackings = true)
+        {
+            return hasTrackings ? await _context.Set<T>().FirstOrDefaultAsync(expression)
+                                : await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public async Task<List<T>> GetAllAsync()
