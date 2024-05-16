@@ -8,7 +8,6 @@ namespace TSport.Api.BusinessLogic.Interfaces
 {
     public interface IServiceFactory
     {
-        IProductService GetProductService();
         IClubService GetClubService();
     }
 }

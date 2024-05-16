@@ -14,16 +14,8 @@ namespace TSport.Api.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<Club> builder)
         {
             builder.HasIndex(c => c.Name).IsUnique();
-
-            builder.HasMany(c => c.Players)
-                .WithOne(p => p.Club)
-                .HasForeignKey(p => p.ClubId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(c => c.Products)
-                .WithOne(p => p.Club)
-                .HasForeignKey(p => p.ClubId)
-                .OnDelete(DeleteBehavior.Cascade);
+            
+            
         }
     }
 }

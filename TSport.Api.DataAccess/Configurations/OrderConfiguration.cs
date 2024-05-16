@@ -20,6 +20,21 @@ namespace TSport.Api.DataAccess.Configurations
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(o => o.Account)
+                    .WithMany(a => a.Orders)
+                    .HasForeignKey(o => o.AccountId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(o => o.Payment)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(o => o.PaymentId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(o => o.Donation)
+                    .WithOne(d => d.Order)
+                    .HasForeignKey<Donation>(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

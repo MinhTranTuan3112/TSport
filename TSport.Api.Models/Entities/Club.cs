@@ -18,8 +18,11 @@ namespace TSport.Api.Models.Entities
         public required string Name { get; set; }
 
         //Navigators
-        public virtual ICollection<Player> Players { get; set; } = [];
 
-        public virtual ICollection<Product> Products { get; set; } = [];
+        public virtual ICollection<Shirt> Shirts { get; set; } = [];
+
+        public virtual ICollection<SeasonClubPlayer> SeasonClubPlayers { get; set; } = [];
+
+        public virtual ICollection<Donation> Donations { get; set; } = [];
     }
 }

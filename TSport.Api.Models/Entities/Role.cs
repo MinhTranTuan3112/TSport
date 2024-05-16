@@ -9,18 +9,18 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
-    public class Player : BaseEntity
+    public class Role : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public required string Name { get; set; }
+        public required string Name { get; set; }  //Based on Role enum
 
         //Navigators
+        public virtual ICollection<Account> Accounts { get; set; } = [];
+        
+        public virtual ICollection<Permission> Permissions { get; set; } = [];
 
-        public virtual ICollection<Shirt> Shirts { get; set; } = [];
-
-        public virtual ICollection<SeasonClubPlayer> SeasonClubPlayers { get; set; } = [];
     }
 }

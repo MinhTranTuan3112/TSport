@@ -19,14 +19,36 @@ namespace TSport.Api.Models.Entities
 
         public required string Password { get; set; }
 
+        public string? FirstName { get; set; }
+
+        public string? LastName { get; set; }
+
+        public string? Address { get; set; }
+
+        public string? Phone { get; set; }
+
+        public DateTime? Dob { get; set; }
+
+        public string? Gender { get; set; } //Based on Gender enum
+
         public string? RefreshToken { get; set; }
 
         public DateTime? RefreshTokenExpireTime { get; set; }
 
-        public required string Role { get; set; } //Based on Role enum
+        public int RoleId { get; set; }
 
         //Navigators
-        
+        public virtual Role Role { get; set; } = null!;
+
+        public virtual ICollection<Shirt> CreatedShirts { get; set; } = [];
+
+        public virtual ICollection<Shirt> ModifiedShirts { get; set; } = [];
+
+        public virtual ICollection<Order> Orders { get; set; } = [];
+
+        public virtual ICollection<Voucher> Vouchers { get; set; } = [];
+
+        public virtual ICollection<Donation> Donations { get; set; } = [];
 
     }
 }
