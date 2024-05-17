@@ -10,5 +10,7 @@ namespace TSport.Api.BusinessLogic.Interfaces
     public interface IClubService
     {
         Task<List<GetClubDto>> GetClubs();
+
+        Task<List<GetClubWithPlayersDto>> GetClubWithPlayers();
     }
 }

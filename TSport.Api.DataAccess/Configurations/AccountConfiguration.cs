@@ -13,28 +13,8 @@ namespace TSport.Api.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
+            builder.ToTable("Account");
             builder.HasIndex(a => a.Email).IsUnique();
-
-            builder.HasMany<Voucher>(a => a.Vouchers)
-                    .WithMany(v => v.Accounts)
-                    .UsingEntity("AccountVouchers",
-                    l => l.HasOne(typeof(Voucher))
-                         .WithMany()
-                         .HasForeignKey("VoucherId")
-                         .HasPrincipalKey(nameof(Voucher.Id))
-                         .OnDelete(DeleteBehavior.Cascade),
-                    r => r.HasOne(typeof(Account))
-                            .WithMany()
-                            .HasForeignKey("AccountId")
-                            .HasPrincipalKey(nameof(Account.Id))
-                            .OnDelete(DeleteBehavior.Cascade),
-                    j => j.HasKey("AccountId", "VoucherId")
-            );
-
-            builder.HasOne(a => a.Role)
-                    .WithMany(r => r.Accounts)
-                    .HasForeignKey(a => a.RoleId)
-                    .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -13,7 +13,13 @@ namespace TSport.Api.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderDetail> builder)
         {
-            builder.HasKey(od => new { od.OrderId, od.ShirtEditionId });
+            builder.ToTable("OrderDetail");
+            builder.HasKey(od => new { od.OrderId, od.ShirtId });
+
+            builder.HasOne(od => od.Shirt)
+                    .WithMany(s => s.OrderDetails)
+                    .HasForeignKey(od => od.ShirtId)
+                    .OnDelete(DeleteBehavior.NoAction);
 
             
         }

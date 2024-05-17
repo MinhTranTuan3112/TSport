@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TSport.Api.Shared.DTOs.Clubs
+namespace TSport.Api.Shared.DTOs.Players
 {
-    public record GetClubDto
+    public class GetPlayerDto
     {
         public int Id { get; set; }
 
         public required string Name { get; set; }
 
-        public required string LogoUrl { get; set; }
+        public int ClubId { get; set; }
     }
 }

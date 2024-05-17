@@ -17,9 +17,9 @@ namespace TSport.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetClubDto>>> GetClubs()
+        public async Task<ActionResult<List<GetClubWithPlayersDto>>> GetClubs()
         {
-            return await _serviceFactory.GetClubService().GetClubs();
+            return await _serviceFactory.GetClubService().GetClubWithPlayers();
         }
     }
 }

@@ -8,20 +8,32 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
-    public class Season : BaseEntity
+    [Table("Season")]
+    public class Season : BaseAuditableEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public required string Code { get; set; }
+
         public required string Name { get; set; }
 
-        public int Year { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public required string Status { get; set; }
+
+        public int? ClubId { get; set; }
 
         //Navigators
-        public virtual ICollection<Shirt> Shirts { get; set; } = [];
 
-        public virtual ICollection<SeasonClubPlayer> SeasonClubPlayers { get; set; } = [];
+        public virtual Club? Club { get; set; }
+
+        public virtual ICollection<SeasonPlayer> SeasonPlayers { get; set; } = [];
+
+        public virtual ICollection<ShirtEdition> ShirtEditions { get; set; } = [];
 
     }
 }

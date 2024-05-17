@@ -12,23 +12,9 @@ namespace TSport.Api.DataAccess.Configurations
         {
                 public void Configure(EntityTypeBuilder<Shirt> builder)
                 {
+                        builder.ToTable("Shirt");
                         builder.Property(s => s.CreatedDate)
                                 .HasDefaultValueSql("GETDATE()");
-
-                        builder.HasOne(s => s.Player)
-                              .WithMany(p => p.Shirts)
-                              .HasForeignKey(s => s.PlayerId)
-                              .OnDelete(DeleteBehavior.NoAction);
-
-                        builder.HasOne(s => s.Club)
-                              .WithMany(c => c.Shirts)
-                              .HasForeignKey(s => s.ClubId)
-                              .OnDelete(DeleteBehavior.NoAction);
-
-                        builder.HasOne(s => s.Season)
-                                .WithMany(s => s.Shirts)
-                                .HasForeignKey(s => s.SeasonId)
-                                .OnDelete(DeleteBehavior.NoAction);
 
                         builder.HasOne(s => s.CreatedAccount)
                                 .WithMany(a => a.CreatedShirts)
@@ -40,10 +26,6 @@ namespace TSport.Api.DataAccess.Configurations
                                 .HasForeignKey(a => a.ModifiedAccountId)
                                 .OnDelete(DeleteBehavior.NoAction);
 
-                        builder.HasMany(s => s.ShirtEditions)
-                             .WithOne(se => se.Shirt)
-                             .HasForeignKey(se => se.ShirtId)
-                             .OnDelete(DeleteBehavior.Cascade);
                 }
         }
 }

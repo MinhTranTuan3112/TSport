@@ -8,21 +8,20 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
-    public class Voucher : BaseEntity
+    [Table("SeasonPlayer")]
+    public class SeasonPlayer : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public required string Type { get; set; } //Based on VoucherType enum
+        public int SeasonId { get; set; }
 
-        public double DiscountPercentage { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
+        public int PlayerId { get; set; }
 
         //Navigators
-        public virtual ICollection<Account> Accounts { get; set; } = [];
+        public virtual Season Season { get; set; } = null!;
+
+        public virtual Player Player { get; set; } = null!;
     }
 }

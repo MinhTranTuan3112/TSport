@@ -9,20 +9,23 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
-    public class Club : BaseEntity
+    [Table("Club")]
+    public class Club : BaseAuditableEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public required string Code { get; set; }
+
         public required string Name { get; set; }
+
+        public required string LogoUrl { get; set; }
 
         //Navigators
 
-        public virtual ICollection<Shirt> Shirts { get; set; } = [];
+        public virtual ICollection<Player> Players { get; set; } = [];
 
-        public virtual ICollection<SeasonClubPlayer> SeasonClubPlayers { get; set; } = [];
-
-        public virtual ICollection<Donation> Donations { get; set; } = [];
+        public virtual ICollection<Season> Seasons { get; set; } = [];
     }
 }

@@ -9,6 +9,7 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
+    [Table("Account")]
     public class Account : BaseEntity
     {
         [Key]
@@ -35,20 +36,38 @@ namespace TSport.Api.Models.Entities
 
         public DateTime? RefreshTokenExpireTime { get; set; }
 
-        public int RoleId { get; set; }
+        public required string Role { get; set; } //Based on Role enum
+
+        public required string Status { get; set; }
 
         //Navigators
-        public virtual Role Role { get; set; } = null!;
-
         public virtual ICollection<Shirt> CreatedShirts { get; set; } = [];
 
         public virtual ICollection<Shirt> ModifiedShirts { get; set; } = [];
 
-        public virtual ICollection<Order> Orders { get; set; } = [];
+        public virtual ICollection<ShirtEdition> CreatedShirtEditions { get; set; } = [];
 
-        public virtual ICollection<Voucher> Vouchers { get; set; } = [];
+        public virtual ICollection<ShirtEdition> ModifiedShirtEditions { get; set; } = [];
 
-        public virtual ICollection<Donation> Donations { get; set; } = [];
+        public virtual ICollection<Season> CreatedSeasons { get; set; } = [];
+
+        public virtual ICollection<Season> ModifiedSeasons { get; set; } = [];
+
+        public virtual ICollection<Player> CreatedPlayers { get; set; } = [];
+
+        public virtual ICollection<Player> ModifiedPlayers { get; set; } = [];
+
+        public virtual ICollection<Club> CreatedClubs { get; set; } = [];
+
+        public virtual ICollection<Club> ModifiedClubs { get; set; } = [];
+
+        public virtual ICollection<Payment> CreatedPayments { get; set; } = [];
+
+        public virtual ICollection<Payment> ModifiedPayments { get; set; } = [];
+
+        public virtual ICollection<Order> CreatedOrders { get; set; } = [];
+
+        public virtual ICollection<Order> ModifiedOrders { get; set; } = [];
 
     }
 }

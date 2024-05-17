@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace TSport.Api.BusinessLogic.Services
         public async Task<List<GetClubDto>> GetClubs()
         {
             return (await _unitOfWork.Repository<Club>().GetAllAsync()).Adapt<List<GetClubDto>>();
+        }
+
+        public async Task<List<GetClubWithPlayersDto>> GetClubWithPlayers()
+        {
+            return await _unitOfWork.Repository<Club>().Entities
+                .ProjectToType<GetClubWithPlayersDto>()
+                .ToListAsync();
         }
     }
 }

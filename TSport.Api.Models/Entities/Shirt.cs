@@ -8,11 +8,14 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
+    [Table("Shirt")]
     public class Shirt : BaseAuditableEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        public required string Code { get; set; }
 
         public required string Name { get; set; }
 
@@ -22,22 +25,14 @@ namespace TSport.Api.Models.Entities
 
         public string? Description { get; set; }
 
-        public int? PlayerId { get; set; }
+        public required string Status { get; set; } //Based on ShirtStatus enum
 
-        public int? ClubId { get; set; }
-
-        public int? SeasonId { get; set; }
+        public int ShirtEditionId { get; set; }
 
         //Navigators
-        public virtual Player? Player { get; set; }
+        public virtual ShirtEdition ShirtEdition { get; set; } = null!;
 
-        public virtual Club? Club { get; set; }
-
-        public virtual Season? Season { get; set; }
-
-        public virtual ICollection<ShirtEdition> ShirtEditions { get; set; } = [];
-
-        public virtual ICollection<Image> Images { get; set; } = [];
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = [];
 
     }
 }

@@ -8,18 +8,25 @@ using TSport.Api.Models.Abstractions;
 
 namespace TSport.Api.Models.Entities
 {
-    public class Payment : BaseEntity
+    [Table("Payment")]
+    public class Payment : BaseAuditableEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public required string Code { get; set; }
+
         public required string PaymentType { get; set; } //Based on PaymentType enum
 
         public required string ProviderName { get; set; }
 
+        public required string Status { get; set; }
+
+        public int? OrderId { get; set; }
+
         //Navigators
-        public virtual ICollection<Order> Orders { get; set; } = [];
+        public virtual Order? Order { get; set; } 
 
     }
 }

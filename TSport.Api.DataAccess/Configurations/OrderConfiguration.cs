@@ -13,6 +13,7 @@ namespace TSport.Api.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
+            builder.ToTable("Order");
             builder.Property(o => o.OrderDate)
                 .HasDefaultValueSql("GETDATE()");
 
@@ -21,20 +22,22 @@ namespace TSport.Api.DataAccess.Configurations
                 .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(o => o.Account)
-                    .WithMany(a => a.Orders)
-                    .HasForeignKey(o => o.AccountId)
+            builder.HasOne(o => o.CreatedAccount)
+                    .WithMany(a => a.CreatedOrders)
+                    .HasForeignKey(o => o.CreatedAccountId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(o => o.Payment)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(o => o.PaymentId)
-                    .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(o => o.Donation)
-                    .WithOne(d => d.Order)
-                    .HasForeignKey<Donation>(d => d.OrderId)
+            builder.HasOne(o => o.ModifiedAccount)
+                    .WithMany(a => a.ModifiedOrders)
+                    .HasForeignKey(a => a.ModifiedAccountId)
                     .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.HasMany(o => o.Payments)
+                    .WithOne(p => p.Order)
+                    .HasForeignKey(p => p.OrderId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }

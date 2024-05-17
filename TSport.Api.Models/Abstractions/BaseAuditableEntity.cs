@@ -17,8 +17,6 @@ namespace TSport.Api.Models.Abstractions
 
         public int? ModifiedAccountId { get; set; }
 
-        public required string Status { get; set; }
-
         public virtual Account CreatedAccount { get; set; } = null!;
 
         public virtual Account? ModifiedAccount { get; set; }
