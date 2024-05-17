@@ -37,5 +37,7 @@ namespace TSport.Api.Models.Entities
 
         public virtual ICollection<ShirtEdition> ShirtEditions { get; set; } = [];
 
+        public virtual ICollection<Image> Images { get; set; } = [];
+
     }
 }

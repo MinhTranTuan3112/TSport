@@ -41,6 +41,8 @@ namespace TSport.Api.DataAccess
 
         public DbSet<Donation> Donations { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -66,6 +68,7 @@ namespace TSport.Api.DataAccess
             modelBuilder.ApplyConfiguration(new SeasonClubPlayersConfiguration());
             modelBuilder.ApplyConfiguration(new ShirtConfiguration());
             modelBuilder.ApplyConfiguration(new ShirtEditionConfiguration());
+            modelBuilder.ApplyConfiguration(new ImagesConfiguration());
 
         }
     }
